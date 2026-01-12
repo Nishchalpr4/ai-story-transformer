@@ -1,0 +1,96 @@
+{
+  "original_contract": {
+    "title": "Cinderella",
+    "logline": "A young girl overcomes adversity with magical help to find true love with a prince.",
+    "themes": [
+      "Transformation",
+      "Love conquers all"
+    ],
+    "characters": [
+      {
+        "name": "Cinderella",
+        "archetype": "The Hero",
+        "role": "Protagonist",
+        "motivation": "Find true love and escape her miserable life",
+        "core_trait": "Kindness"
+      },
+      {
+        "name": "Fairy Godmother",
+        "archetype": "The Mentor",
+        "role": "Supporting",
+        "motivation": "Help Cinderella achieve her goals",
+        "core_trait": "Benevolence"
+      },
+      {
+        "name": "The Prince",
+        "archetype": "The Love Interest",
+        "role": "Protagonist",
+        "motivation": "Find a suitable bride",
+        "core_trait": "Romantic"
+      }
+    ],
+    "plot_beats": [
+      {
+        "description": "A call to adventure is announced",
+        "narrative_function": "Inciting Incident",
+        "emotional_note": "Excitement"
+      },
+      {
+        "description": "Protagonist is aided by a magical helper",
+        "narrative_function": "Establishing the stakes",
+        "emotional_note": "Hopeful"
+      },
+      {
+        "description": "Protagonist meets and falls in love with the love interest",
+        "narrative_function": "Plot turning point",
+        "emotional_note": "Romantic"
+      },
+      {
+        "description": "Protagonist faces a time constraint and must make a hasty exit",
+        "narrative_function": "Rising action",
+        "emotional_note": "Tension"
+      },
+      {
+        "description": "The love interest searches for the protagonist",
+        "narrative_function": "Climax",
+        "emotional_note": "Longing"
+      }
+    ]
+  },
+  "context_map": {
+    "new_title": "The Scholar",
+    "new_logline": "A young student overcomes academic adversity with help from a wise mentor to achieve a prestigious scholarship and find love with a talented classmate.",
+    "characters": [
+      {
+        "new_name": "Riya",
+        "original_name": "Cinderella",
+        "role_in_new_world": "Diligent Student",
+        "description": "A kind and hardworking student facing difficulties in her studies due to family constraints."
+      },
+      {
+        "new_name": "Professor Rao",
+        "original_name": "Fairy Godmother",
+        "role_in_new_world": "Guiding Teacher",
+        "description": "A benevolent professor who recognizes Riya's potential and provides her with academic guidance and support."
+      },
+      {
+        "new_name": "Aryan",
+        "original_name": "The Prince",
+        "role_in_new_world": "Talented Classmate",
+        "description": "A charming and intelligent student who becomes Riya's love interest and study partner."
+      }
+    ],
+    "setting": {
+      "location": "A prestigious school in India",
+      "rules": "Admission to a top university is highly competitive, and students must score high in exams to secure scholarships."
+    },
+    "plot_outline": [
+      "Riya discovers the announcement for a highly competitive scholarship exam, which sparks her desire to pursue higher education.",
+      "Professor Rao takes Riya under her wing, providing her with specialized coaching and study materials to help her prepare for the exam.",
+      "Riya meets Aryan during a study group session, and they start working together, leading to a romantic connection.",
+      "As the exam date approaches, Riya faces a time constraint to complete her preparations and must make a difficult choice between her studies and personal life.",
+      "Aryan searches for Riya after she misses a crucial study session, and they finally confess their feelings for each other after the exam results are announced."
+    ]
+  },
+  "style_used": "epic"
+}

@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-01-11T22:56:57.351270",
+  "original_contract": {
+    "title": "Cinderella",
+    "logline": "A young girl overcomes her abusive stepfamily with the help of a magical benefactor to win the heart of a prince.",
+    "themes": [
+      "Transformation",
+      "Redemption"
+    ],
+    "characters": [
+      {
+        "name": "Cinderella",
+        "archetype": "The Hero",
+        "role": "Protagonist",
+        "motivation": "Attend the royal ball and find true love",
+        "core_trait": "Kindness"
+      },
+      {
+        "name": "The Prince",
+        "archetype": "The Love Interest",
+        "role": "Deuteragonist",
+        "motivation": "Find a suitable bride",
+        "core_trait": "Charming"
+      },
+      {
+        "name": "The Stepmother",
+        "archetype": "The Antagonist",
+        "role": "Antagonist",
+        "motivation": "Prevent Cinderella from attending the ball",
+        "core_trait": "Cruelty"
+      }
+    ],
+    "plot_beats": [
+      {
+        "description": "An invitation to a grand event sparks desire in the protagonist",
+        "narrative_function": "Inciting Incident",
+        "emotional_note": "Hopeful"
+      },
+      {
+        "description": "The protagonist is aided by a powerful, magical benefactor",
+        "narrative_function": "Turning Point",
+        "emotional_note": "Empowering"
+      },
+      {
+        "description": "The protagonist must escape a situation before a deadline",
+        "narrative_function": "Climax",
+        "emotional_note": "Urgent"
+      },
+      {
+        "description": "The protagonist's true identity is revealed, leading to a joyful reunion",
+        "narrative_function": "Resolution",
+        "emotional_note": "Triumphant"
+      }
+    ]
+  },
+  "context_map": {
+    "new_title": "The IIT Aspirant",
+    "new_logline": "A young student from a humble background overcomes her abusive academic pressures with the help of a mentor to secure admission into the prestigious Indian Institute of Technology.",
+    "characters": [
+      {
+        "new_name": "Riya Sharma",
+        "original_name": "Cinderella",
+        "role_in_new_world": "Aspiring IIT Student",
+        "description": "A kind and diligent student from a low-income family, facing academic pressures and neglect from her stepfamily."
+      },
+      {
+        "new_name": "Professor Kumar",
+        "original_name": "The Prince",
+        "role_in_new_world": "Mentor and IIT Professor",
+        "description": "A charming and experienced professor who guides Riya in her IIT preparation and becomes her love interest."
+      },
+      {
+        "new_name": "Mrs. Singh",
+        "original_name": "The Stepmother",
+        "role_in_new_world": "Riya's Step-mother and Owner of a Coaching Institute",
+        "description": "A cruel and manipulative woman who prioritizes her own coaching institute's interests over Riya's well-being and academic success."
+      }
+    ],
+    "setting": {
+      "location": "Delhi, India",
+      "rules": "The Indian education system's competitive environment, with a focus on IIT JEE exams and the significance of coaching institutes."
+    },
+    "plot_outline": [
+      "Riya discovers the opportunity to take the IIT JEE exam and becomes determined to secure admission, despite her step-mother's disapproval.",
+      "Riya meets Professor Kumar, who agrees to mentor her and helps her prepare for the exams, boosting her confidence and skills.",
+      "As the exam date approaches, Riya faces increased pressure from her step-mother and the competition, forcing her to balance her preparation with her personal life.",
+      "Riya takes the IIT JEE exam and, with Professor Kumar's support, achieves a remarkable score, securing her admission into IIT and reuniting with Professor Kumar, who reveals his romantic interest in her."
+    ]
+  },
+  "style_used": "narrative"
+}
