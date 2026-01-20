@@ -1,131 +1,108 @@
 # 🎭 AI Story Transformer
 
+Transform classic stories into new cultural contexts using AI prompt chaining.
+
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> Transform classic stories into new cultural contexts using AI prompt chaining.
+## What It Does
 
-**Demo:** Takes Cinderella and reimagines it in the Indian Education System — turning the ball into a scholarship exam, the Fairy Godmother into a wise professor, and the Prince into a top-ranking student.
+Takes any story and reimagines it in a completely different setting while preserving the narrative structure. 
 
----
-
-## 🧠 How It Works
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                        3-STAGE PROMPT CHAIN                             │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐            │
-│  │   STAGE 1    │     │   STAGE 2    │     │   STAGE 3    │            │
-│  │   EXTRACT    │────▶│     MAP      │────▶│   GENERATE   │            │
-│  └──────────────┘     └──────────────┘     └──────────────┘            │
-│         │                   │                    │                      │
-│         ▼                   ▼                    ▼                      │
-│   StoryEssence         StoryMap            Final Story                 │
-│   (archetypes,         (new names,         (1000+ words,               │
-│    themes,              settings,           chosen style)              │
-│    plot beats)          plot outline)                                   │
-│                                                                         │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+**Example:** Cinderella → Indian Education System
+- The Ball → Scholarship Exam
+- Fairy Godmother → Wise Teacher/Mentor  
+- Glass Slipper → Academic Excellence
+- Prince → Supportive Fellow Student
 
 ---
 
-## ✨ Features
+## Quick Start
 
-| Feature | Description |
-|---------|-------------|
-| **Prompt Chaining** | 3-stage pipeline where each stage builds on the previous |
-| **Structured Output** | Pydantic models ensure valid, typed LLM responses |
-| **Multiple Styles** | Narrative, Screenplay, Satirical, or Epic |
-| **Retry Logic** | Automatic retries on API failures |
-| **Input Validation** | Validates story, target, and style inputs |
-
----
-
-## 🚀 Quick Start
-
-### 1. Clone & Install
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/story-transformer.git
+git clone https://github.com/yourusername/story-transformer.git
 cd story-transformer
+```
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Set API Key
+### 3. Set up your API key
 
 Get a free API key from [console.groq.com](https://console.groq.com)
 
+**Option A: Create a `.env` file**
 ```bash
-# Windows PowerShell
-$env:GROQ_API_KEY = "your-key-here"
-
-# Linux/Mac
-export GROQ_API_KEY="your-key-here"
+cp .env.example .env
+# Edit .env and add your key
 ```
 
-### 3. Run
+**Option B: Set environment variable**
+```bash
+# Windows PowerShell
+$env:GROQ_API_KEY = "your-api-key-here"
+
+# Linux/Mac
+export GROQ_API_KEY="your-api-key-here"
+```
+
+### 4. Run the transformer
 
 ```bash
 python run.py
 ```
 
+You'll be prompted to select an output style (Narrative, Screenplay, Satirical, or Epic).
+
 ---
 
-## 📁 Project Structure
+## How It Works
+
+The transformer uses a 3-stage prompt chain:
+
+```
+Stage 1: EXTRACT          Stage 2: MAP              Stage 3: GENERATE
+   │                         │                         │
+   ▼                         ▼                         ▼
+Story Essence      →     Story Map         →      Final Story
+(themes, archetypes,     (new characters,         (1000+ words in
+ plot beats)              settings, plot)          chosen style)
+```
+
+Each stage builds on the output of the previous one, ensuring coherent transformation.
+
+---
+
+## Project Structure
 
 ```
 story-transformer/
-├── run.py                 # Entry point with CLI
-├── story_transformer.py   # Core 3-stage pipeline
+├── run.py                 # Entry point - run this
+├── story_transformer.py   # Core transformation pipeline
 ├── prompts.py             # Prompt templates for each stage
-├── requirements.txt       # Dependencies
-├── .env.example           # Environment template
-└── output/
-    └── story.md           # Generated story output
+├── requirements.txt       # Python dependencies
+├── .env.example           # Environment variable template
+└── output/                # Generated stories saved here
 ```
 
 ---
 
-## 🔧 Technical Details
+## Features
 
-### Why 3 Stages?
-
-| Approach | Problem |
-|----------|---------|
-| Single prompt | Shallow find-and-replace, loses story structure |
-| **3-stage chain** | Extracts DNA → Maps to new world → Writes coherently |
-
-### Why Pydantic?
-
-```python
-class Character(BaseModel):
-    name: str
-    archetype: str    # Enforced structure
-    role: str         # LLM can't return garbage
-    motivation: str
-```
-
-LLMs can hallucinate malformed JSON. Pydantic catches this immediately.
+- **3-Stage Pipeline** — Extract → Map → Generate for coherent results
+- **Structured Output** — Pydantic models ensure valid LLM responses
+- **Multiple Styles** — Narrative, Screenplay, Satirical, or Epic
+- **Automatic Retries** — Handles API failures gracefully
+- **Input Validation** — Validates all inputs before processing
 
 ---
 
-## 📊 Example Transformation
-
-| Original (Cinderella) | → | Transformed (Indian Education) |
-|----------------------|---|--------------------------------|
-| Cinderella | → | Riya (brilliant but poor student) |
-| Stepmother | → | Strict joint family elders |
-| Fairy Godmother | → | Professor Sharma (mentor) |
-| Glass Slipper | → | Perfect exam score |
-| The Ball | → | IIT-JEE examination |
-| Prince | → | Recognition & scholarship |
-
----
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **LLM**: Llama 3.3 70B via Groq (fast inference)
 - **Validation**: Pydantic v2
@@ -133,18 +110,6 @@ LLMs can hallucinate malformed JSON. Pydantic catches this immediately.
 
 ---
 
-## 📝 License
+## License
 
-MIT License - feel free to use and modify.
-
----
-
-## 🤝 Why I Built This
-
-This project demonstrates:
-- **Prompt Engineering** — Carefully designed prompts for each stage
-- **Prompt Chaining** — Output of one stage feeds into the next
-- **Structured LLM Output** — Using Pydantic for reliable data extraction
-- **Production Patterns** — Error handling, retries, logging, validation
-
-Built as a demonstration of AI engineering best practices.
+MIT License — see [LICENSE](LICENSE) for details.
