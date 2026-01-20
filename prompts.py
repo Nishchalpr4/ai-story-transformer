@@ -1,165 +1,171 @@
+"""
+Prompts for Story Transformer Pipeline
+=======================================
+Each prompt is designed for a specific stage of the transformation.
+"""
+
+# ============================================================================
+# STAGE 1: EXTRACTION
+# Purpose: Pull out the abstract "DNA" of the story (setting-independent)
+# ============================================================================
+
 EXTRACTION_PROMPT = """
-You are an expert literary analyst. Your goal is to distill a story down to its absolute essence so it can be transported to a new setting.
+Analyze this story and extract its core elements.
 
-Analyze the given story: "{source_story}"
+STORY:
+"{source_story}"
 
-Return the result in the following strict JSON format:
+Return a JSON object with:
 {{
-  "title": "Story Title",
-  "logline": "A one-sentence summary...",
-  "themes": ["Theme 1", "Theme 2"],
+  "title": "story title",
+  "logline": "one sentence summary",
+  "themes": ["theme1", "theme2"],
   "characters": [
     {{
-      "name": "Original Name",
-      "archetype": "e.g. The Hero",
-      "role": "Protagonist",
-      "motivation": "Goal...",
-      "core_trait": "Main trait..."
+      "name": "character name",
+      "archetype": "Underdog/Mentor/Villain/etc",
+      "role": "Protagonist/Antagonist/Support",
+      "motivation": "what drives them",
+      "core_trait": "defining personality trait"
     }}
   ],
   "plot_beats": [
     {{
-      "description": "Abstract description of event...",
-      "narrative_function": "e.g. Inciting Incident",
-      "emotional_note": "e.g. Hopeful"
+      "description": "what happens (abstract, not setting-specific)",
+      "narrative_function": "Setup/Conflict/Climax/Resolution",
+      "emotional_note": "emotional tone of this moment"
     }}
   ]
 }}
 
-Ensure the output is valid JSON. Do not include any text outside the JSON object.
+Return ONLY valid JSON, no other text.
 """
 
-MAPPING_PROMPT = """
-You are a creative genius capable of reimagining stories in wild new contexts.
 
-**Source Material**:
+# ============================================================================
+# STAGE 2: MAPPING
+# Purpose: Translate abstract elements into the target setting
+# ============================================================================
+
+MAPPING_PROMPT = """
+Reimagine this story in a completely new setting.
+
+ORIGINAL STORY ELEMENTS:
 {contract_json}
 
-**Target Context**:
-"{target_context}"
+TARGET SETTING: "{target_context}"
 
-**Task**:
-Map the source material into the target context.
-1. Reimagine Characters: map each original character to a perfectly fitting equivalent.
-2. Reimagine Plot Beats: Translate abstract beats into specific events in the new setting.
-3. World Building: Define rules/locations.
+Create new character names and roles that fit the target setting.
+Translate each plot beat into a concrete scene in the new world.
 
-Return the result in the following strict JSON format:
+Return a JSON object:
 {{
-  "new_title": "The New Title",
-  "new_logline": "Updated logline...",
+  "new_title": "title for the new version",
+  "new_logline": "updated one-line summary",
   "characters": [
     {{
-      "new_name": "New Name",
-      "original_name": "Original Name",
-      "role_in_new_world": "e.g. CEO",
-      "description": "Description..."
+      "new_name": "name in new setting",
+      "original_name": "original name",
+      "role_in_new_world": "their role in this setting",
+      "description": "brief character description"
     }}
   ],
   "setting": {{
-    "location": "Main location",
-    "rules": "Key world rules"
+    "location": "primary location",
+    "rules": "how this world works"
   }},
   "plot_outline": [
-    "Scene 1 description...",
-    "Scene 2 description..."
+    "Scene 1: description",
+    "Scene 2: description"
   ]
 }}
 
-Ensure the output is valid JSON. Do not include any text outside the JSON object.
+Return ONLY valid JSON, no other text.
 """
 
-# Style-specific generation prompts
-GENERATION_PROMPTS = {
-    "narrative": """
-You are a master storyteller. Write a compelling narrative based on the following reimagined plot.
 
-**Title**: {new_title}
-**Context**: {target_context}
-**Characters**:
+# ============================================================================
+# STAGE 3: GENERATION
+# Purpose: Write the final story in the chosen style
+# ============================================================================
+
+GENERATION_PROMPTS = {
+    
+    "narrative": """
+Write a complete story based on this outline.
+
+TITLE: {new_title}
+SETTING: {target_context}
+
+CHARACTERS:
 {characters_list}
 
-**Plot Outline**:
+PLOT OUTLINE:
 {plot_outline}
 
-**Instructions**:
-- Write in an engaging, vivid prose style with rich descriptions.
-- Use third-person narration with deep character introspection.
-- Include sensory details and emotional depth.
-- Ensure the emotional core of the original story shines through.
-- Length: Approximately 1000-1500 words.
-
-Begin the story now.
+Requirements:
+- Third person narration
+- Include character thoughts and emotions
+- Vivid descriptions of the setting
+- 1000-1500 words
 """,
 
     "screenplay": """
-You are a professional screenwriter. Write a screenplay adaptation based on the following reimagined plot.
+Write a screenplay based on this outline.
 
-**Title**: {new_title}
-**Context**: {target_context}
-**Characters**:
+TITLE: {new_title}
+SETTING: {target_context}
+
+CHARACTERS:
 {characters_list}
 
-**Plot Outline**:
+PLOT OUTLINE:
 {plot_outline}
 
-**Instructions**:
-- Use proper screenplay format: SCENE HEADINGS (INT./EXT.), ACTION lines, CHARACTER names in caps before dialogue.
-- Write visual, cinematic descriptions.
-- Dialogue should be natural and reveal character.
-- Include parentheticals for acting directions sparingly.
-- Ensure the emotional core of the original story shines through.
-- Length: Approximately 8-12 scenes.
-
-Begin the screenplay now.
+Requirements:
+- Proper screenplay format (INT./EXT. headings)
+- Character names in CAPS before dialogue
+- Action lines and visual descriptions
+- 8-12 scenes
 """,
 
     "satirical": """
-You are a satirical writer with a sharp wit. Write a comedic reimagining based on the following plot.
+Write a satirical comedy based on this outline.
 
-**Title**: {new_title}
-**Context**: {target_context}
-**Characters**:
+TITLE: {new_title}
+SETTING: {target_context}
+
+CHARACTERS:
 {characters_list}
 
-**Plot Outline**:
+PLOT OUTLINE:
 {plot_outline}
 
-**Instructions**:
-- Use biting satire and observational comedy.
-- Exaggerate absurdities of the target context for comedic effect.
-- Include witty dialogue and ironic situations.
-- Break the fourth wall occasionally if appropriate.
-- The humor should have a point - satirize real issues in the target context.
-- Despite the comedy, maintain the emotional arc of the original story.
-- Length: Approximately 1000-1500 words.
-
-Begin the satirical story now.
+Requirements:
+- Humorous and ironic tone
+- Exaggerate the absurdities of the setting
+- Witty dialogue
+- Keep the emotional arc intact
+- 1000-1500 words
 """,
 
     "epic": """
-You are a bard crafting an epic tale. Write a grand, mythic narrative based on the following reimagined plot.
+Write an epic tale based on this outline.
 
-**Title**: {new_title}
-**Context**: {target_context}
-**Characters**:
+TITLE: {new_title}
+SETTING: {target_context}
+
+CHARACTERS:
 {characters_list}
 
-**Plot Outline**:
+PLOT OUTLINE:
 {plot_outline}
 
-**Instructions**:
-- Write in an elevated, epic style reminiscent of classical literature.
-- Use rich metaphors, heroic language, and dramatic tension.
-- Characters should feel larger than life, their struggles universal.
-- Include moments of triumph, despair, and transcendence.
-- The prose should feel timeless and mythic.
-- Ensure the emotional core of the original story shines through magnificently.
-- Length: Approximately 1200-1800 words.
-
-Begin the epic tale now.
+Requirements:
+- Grand, mythic language
+- Characters feel larger than life
+- Rich metaphors and imagery
+- Moments of triumph and despair
+- 1200-1800 words
 """
 }
-
-# Default for backward compatibility
-GENERATION_PROMPT = GENERATION_PROMPTS["narrative"]

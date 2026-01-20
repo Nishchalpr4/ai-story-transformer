@@ -1,16 +1,16 @@
+# Environment
+.env
+.venv/
+venv/
+env/
+
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
+*.pyo
+*.pyd
 .Python
-venv/
-env/
-.venv/
-
-# Environment variables
-.env
-.env.local
+*.so
 
 # IDE
 .vscode/
@@ -21,3 +21,8 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Project specific
+output/*.md
+output/*.json
+!output/.gitkeep
